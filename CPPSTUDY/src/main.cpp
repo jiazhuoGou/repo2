@@ -37,7 +37,7 @@ int Employee::numberOfObjects = 0;
 
 int main(void)
 {
-	namespace fs = std::filesystem;
+	
 	cout << "alohaworld" << endl;
 	//auto c1 = Circle{2.3};	//	用匿名对象做拷贝列表初始化
 	//Circle c2{3.2};	// 直接列表初始化
