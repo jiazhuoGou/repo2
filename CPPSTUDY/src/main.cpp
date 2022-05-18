@@ -17,7 +17,7 @@
 
 using namespace std;
 
-//namespace fs = filesystem;
+namespace fs = filesystem;
 
 void print(array<int, 5> &arr);
 constexpr int factorial(int n)
@@ -179,7 +179,38 @@ int main(void)
 	Shape *shape = &c4;	//	向上转型，子类重写过父类的虚函数，该调用子类重写的
 	cout << shape->toString() << endl;
 	cout << typeid(Shape).name() << endl;
+	cout << "\n";
+
+	cout << "----------filesystem--------" << endl;
+	fs::path p2{"../resource/test.txt"};
+	fs::path p1 {("/home/goujz/Documents/CPPSTUDY/resource/test.txt")};
+	cout << "p1 is : " << p1 << endl;
+	// 输出默认文件分隔符
+	cout << "default separator : " << fs::path::preferred_separator << endl;
+	cout << "p2 is  : " << p2 << endl;	// p2能正常打印
+	// 判断是否是常规文件，是就输出文件大小
+	if (fs::is_regular_file(p2) )
+	{	// 使用相对路径在这判断有问题
+		cout << p2 << " 's size :  " << fs::file_size(p2) << endl;
+	}
+	else if (fs::is_directory(p1))
+	{	// 是目录，列出出其子目录
+		cout << p1 << "is not directory, includes: " << endl;
+		for(auto &e: fs::directory_iterator(p1))
+		{
+			cout << "   " << e.path() << endl;
+		}
+	}
+	else if (fs::exists(p1))
+	{
+		cout << p1 << "is a special file" << endl;
+	}
+	else
+	{
+		cout << p1 << "does not exits" << endl;
+	}
 	
+
 	//system("pause");
 	return 0;
 }
