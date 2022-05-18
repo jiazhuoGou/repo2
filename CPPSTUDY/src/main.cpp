@@ -182,21 +182,22 @@ int main(void)
 	cout << "\n";
 
 	cout << "----------filesystem--------" << endl;
-	fs::path p2{"../resource/test.txt"};
-	fs::path p1 {("/home/goujz/Documents/CPPSTUDY/resource/test.txt")};
+	fs::path p2{R"(../resource/test.cpp)"};
+	fs::path p1 {("/home/goujz/Documents/CPPSTUDY/resource/test.cpp")};
+	fs::path p3 {("/home/goujz/Documents/CPPSTUDY")};
 	cout << "p1 is : " << p1 << endl;
 	// 输出默认文件分隔符
 	cout << "default separator : " << fs::path::preferred_separator << endl;
 	cout << "p2 is  : " << p2 << endl;	// p2能正常打印
 	// 判断是否是常规文件，是就输出文件大小
 	if (fs::is_regular_file(p2) )
-	{	// 使用相对路径在这判断有问题
+	{	// 使用相对路径在这判断有问题, 绝对路径没问题
 		cout << p2 << " 's size :  " << fs::file_size(p2) << endl;
 	}
-	else if (fs::is_directory(p1))
+	else if (fs::is_directory(p3))
 	{	// 是目录，列出出其子目录
-		cout << p1 << "is not directory, includes: " << endl;
-		for(auto &e: fs::directory_iterator(p1))
+		cout << p3 << "is not directory, includes: " << endl;
+		for(auto &e: fs::directory_iterator(p3))
 		{
 			cout << "   " << e.path() << endl;
 		}
@@ -204,12 +205,38 @@ int main(void)
 	else if (fs::exists(p1))
 	{
 		cout << p1 << "is a special file" << endl;
+		cout << p1 << " 's size :  " << fs::file_size(p1) << endl;
 	}
 	else
 	{
 		cout << p1 << "does not exits" << endl;
 	}
 	
+	// 展示path类中用于分解路径成分的函数
+	fs::path p4 {R"(/home/goujz/Documents/CPPSTUDY/resource/test.cpp)"};
+	if(p4.empty())
+	{
+		cout << "path : " << p4 << "is empty" << endl;
+	}
+	if(!fs::exists(p4))
+	{
+		cout << "path : " << p4 << " does not exist" << endl;
+		exit(0);
+	}
+	cout << "root name() : " << p4.root_name() << "\n"
+		<< "root path() : " << p4.root_path() << "\n"
+		<< "relative path() : " << p4.relative_path() << "\n" 
+		<< "parent path() : " << p4.parent_path() << "\n"
+		<< "file name() : " << p4.filename() << "\n"
+		<< "stem() : " << p4.stem() << "\n"
+		<< "extension() : " << p4.extension() 
+		<< endl;
+	
+	// 展示磁盘总大小和剩余大小
+	fs::path p5{"/"};
+	cout << "total space : " << fs::space(p5).capacity << endl;
+	cout << "free space : " << fs::space(p5).free << endl;
+
 
 	//system("pause");
 	return 0;
