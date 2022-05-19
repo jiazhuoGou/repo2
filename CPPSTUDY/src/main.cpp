@@ -43,7 +43,7 @@ int main(void)
 	//auto c1 = Circle{2.3};	//	用匿名对象做拷贝列表初始化
 	//Circle c2{3.2};	// 直接列表初始化
 
-	Circle c3{};	// 直接列表初始化，调用默认构造函数
+	//Circle c3{};	// 直接列表初始化，调用默认构造函数
 	//c3 = Circle{4.5};	// 用匿名对象赋值
 
 	//cout << "哈哈啊咯" << c3.getArea() << endl;
@@ -79,7 +79,7 @@ int main(void)
 	c1.setRadius(C[2].getRadisu());
 	//cout << c1.getRadisu() << endl;
 */
-	// string类
+	/* string类
 	string s{"hello"};
 	s.assign(" alohaw ord    ");
 	s.append("!");
@@ -117,7 +117,7 @@ int main(void)
 	
 	// 创建factorial(4)大小的数组
 	array<int, factorial(4)> a;
-	cout << a.size() << endl;
+	cout << a.size() << endl;*/
 
 	// 不可变对象
 	/*
@@ -183,71 +183,71 @@ int main(void)
 	cout << "\n";
 
 	cout << "----------filesystem--------" << endl;
-	fs::path p2{R"(../resource/test.cpp)"};
-	fs::path p1 {("/home/goujz/Documents/CPPSTUDY/resource/test.cpp")};
-	fs::path p3 {("/home/goujz/Documents/CPPSTUDY")};
-	cout << "p1 is : " << p1 << endl;
+	fs::path fp2{R"(../resource/test.cpp)"};
+	fs::path fp1 {("/home/goujz/Documents/CPPSTUDY/resource/test.cpp")};
+	fs::path fp3 {("/home/goujz/Documents/CPPSTUDY")};
+	cout << "fp1 is : " << fp1 << endl;
 	// 输出默认文件分隔符
 	cout << "default separator : " << fs::path::preferred_separator << endl;
-	cout << "p2 is  : " << p2 << endl;	// p2能正常打印
+	cout << "fp2 is  : " << fp2 << endl;	// p2能正常打印
 	// 判断是否是常规文件，是就输出文件大小
-	if (fs::is_regular_file(p2) )
+	if (fs::is_regular_file(fp2) )
 	{	// 使用相对路径在这判断有问题, 绝对路径没问题
-		cout << p2 << " 's size :  " << fs::file_size(p2) << endl;
+		cout << fp2 << " 's size :  " << fs::file_size(fp2) << endl;
 	}
-	else if (fs::is_directory(p3))
+	else if (fs::is_directory(fp3))
 	{	// 是目录，列出出其子目录
-		cout << p3 << "is not directory, includes: " << endl;
-		for(auto &e: fs::directory_iterator(p3))
+		cout << fp3 << "is not directory, includes: " << endl;
+		for(auto &e: fs::directory_iterator(fp3))
 		{
 			cout << "   " << e.path() << endl;
 		}
 	}
-	else if (fs::exists(p1))
+	else if (fs::exists(fp1))
 	{
-		cout << p1 << "is a special file" << endl;
-		cout << p1 << " 's size :  " << fs::file_size(p1) << endl;
+		cout << fp1 << "is a special file" << endl;
+		cout << fp1 << " 's size :  " << fs::file_size(fp1) << endl;
 	}
 	else
 	{
-		cout << p1 << "does not exits" << endl;
+		cout << fp1 << "does not exits" << endl;
 	}
 	
 	// 展示path类中用于分解路径成分的函数
-	fs::path p4 {R"(/home/goujz/Documents/CPPSTUDY/resource/test.cpp)"};
-	if(p4.empty())
+	fs::path fp4 {R"(/home/goujz/Documents/CPPSTUDY/resource/test.cpp)"};
+	if(fp4.empty())
 	{
-		cout << "path : " << p4 << "is empty" << endl;
+		cout << "path : " << fp4 << "is empty" << endl;
 	}
-	if(!fs::exists(p4))
+	if(!fs::exists(fp4))
 	{
-		cout << "path : " << p4 << " does not exist" << endl;
+		cout << "path : " << fp4 << " does not exist" << endl;
 		exit(0);
 	}
-	cout << "root name() : " << p4.root_name() << "\n"
-		<< "root path() : " << p4.root_path() << "\n"
-		<< "relative path() : " << p4.relative_path() << "\n" 
-		<< "parent path() : " << p4.parent_path() << "\n"
-		<< "file name() : " << p4.filename() << "\n"
-		<< "stem() : " << p4.stem() << "\n"
-		<< "extension() : " << p4.extension() 
+	cout << "root name() : " << fp4.root_name() << "\n"
+		<< "root path() : " << fp4.root_path() << "\n"
+		<< "relative path() : " << fp4.relative_path() << "\n" 
+		<< "parent path() : " << fp4.parent_path() << "\n"
+		<< "file name() : " << fp4.filename() << "\n"
+		<< "stem() : " << fp4.stem() << "\n"
+		<< "extension() : " << fp4.extension() 
 		<< endl;
 	
 	// 展示磁盘总大小和剩余大小
-	fs::path p5{"/"};
-	cout << "total space : " << fs::space(p5).capacity << endl;
-	cout << "free space : " << fs::space(p5).free << endl;
+	fs::path fp5{"/"};
+	cout << "total space : " << fs::space(fp5).capacity << endl;
+	cout << "free space : " << fs::space(fp5).free << endl;
 
 	/* 文件流 */
 	// fs::path p6 {"../resource/test_empty.cpp"};
 	// 写文件
-	fs::path p6 {"/home/goujz/Documents/CPPSTUDY/resource/score.txt"};
-	ofstream output{p6};
+	fs::path fp6 {"/home/goujz/Documents/CPPSTUDY/resource/score.txt"};
+	ofstream output{fp6};
 	double lileiScore{90.5}, hanmeimeiScore{94.6};
 	output << "LiLei " << lileiScore << endl;
 	output << "Hanmeimei score : " << hanmeimeiScore << endl;
 	output.close();
-	cout << "size of " << p6 << "is : " << fs::file_size(p6) << endl;
+	cout << "size of " << fp6 << "is : " << fs::file_size(fp6) << endl;
 
 	// 读文件
 	fs::path fp7 {"/home/goujz/Documents/CPPSTUDY/resource/score2.txt"};
@@ -257,20 +257,58 @@ int main(void)
 		cout << "can't open file " << fp7 << endl;
 		return 0;
 	}
-	string name{""};
-	double score{0.0};
-	char in_x;
+	string buf{""};
 	for(; !input.eof(); )
-	{
-		input.get(in_x);
-		cout << in_x;
+	{	// 遇到指定字符停止,文件结尾还会有一个空格
+		getline(input, buf, '&');
+		cout << buf<< endl;
 	}
 	input.close();
-
+	array arr4{0, 1, 30, 4, 5};
+	cout << "address of arr4 : " << &arr4 << endl;
+	cout << "address of arr4[0] : " << &(arr4[0]) << endl;
 	// 填充字符，设置域宽
 	cout << setprecision(2) << 3.14159 << endl << flush;
 	// 当设置的浮点数总的有效数少了，这个double发生了四舍五入
 	cout << setfill('*') << setprecision(5) << setw(10) << 3.14159 << endl;
+	// 二进制读写
+	cout << "-------------binary io-----------" << endl;
+	fs::path fp8 {"/home/goujz/Documents/CPPSTUDY/resource/array.dat"};
+	// 创建二进制输出流, 打开以写入，只追加
+	fstream out8{fp8, ios::out | ios::app};
+	// 判断流是否打开
+
+	// 将整形数组arr输出到二进制文件，要指定大小
+	cout << "arr4.size() : " << arr4.size() * sizeof(arr4[0]) << "bytes" << endl;
+	out8.write(reinterpret_cast<char*>(&arr4[0]), arr4.size() * sizeof(arr4[0]));
+	// 读文件, fstream::seekg()定位文件位置
+	out8 << flush;
+	out8.close();
+	auto x8{0l};
+	fstream in8{fp8, ios::in | ios::binary};
+	// 按照long来读了8字节
+	in8.read( (char *) &x8, sizeof(x8));
+	cout << "binary read context : " << x8 << endl ;
+	
+	// 文件位置指示器
+	fs::path fp9 {"/home/goujz/Documents/CPPSTUDY/resource/test.dat"};
+	fstream out9{fp9, ios::out | ios::trunc | ios::in};	// 可写可读
+	auto x9{12LL}, x10{24LL};
+	char str9[]{"hello world"};
+	out9.write((char *)(&x9), sizeof(x10));
+	out9.write((char *)(&x10), sizeof(x9));
+	out9.write(str9, sizeof(str9));
+	char buf2[100]{0};
+	out9.seekg(2 * sizeof(long long int), ios::beg);
+	out9.read(buf2, 9);
+	cout << "reseek file * : " << buf2 << endl;
+
+
+	/* c++的一些深度学习 */
+	
+
+
+
 
 
 
