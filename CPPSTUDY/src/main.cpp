@@ -302,9 +302,29 @@ int main(void)
 	out9.seekg(2 * sizeof(long long int), ios::beg);
 	out9.read(buf2, 9);
 	cout << "reseek file * : " << buf2 << endl;
+	cout << "\n";
 
-
-	/* c++的一些深度学习 */
+	/* 异常处理 */
+	cout << "-------------Exception-----------" << endl;
+	vector V{'a', 'b', 'c', 'd', 'e'};
+	try
+	{
+		for (int i = 0; i <=5; i++)
+		{	// 直接用下标不会抛出异常
+		cout << V.at(i) << endl;
+		}
+	}
+	catch(const std::out_of_range& e)
+	{
+		cout << "exceoption : " << e.what() << endl;
+		std::cerr << e.what() << '\n';
+	}
+	
+	
+	
+	
+	
+	
 	
 
 
