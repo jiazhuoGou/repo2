@@ -6,7 +6,8 @@
 #include<algorithm>
 #include<cassert>
 #include<filesystem>
-
+#include<fstream>
+#include<iomanip>
 
 #include "../include/Circle.h"
 #include "../include/Employee.h"
@@ -236,6 +237,43 @@ int main(void)
 	fs::path p5{"/"};
 	cout << "total space : " << fs::space(p5).capacity << endl;
 	cout << "free space : " << fs::space(p5).free << endl;
+
+	/* 文件流 */
+	// fs::path p6 {"../resource/test_empty.cpp"};
+	// 写文件
+	fs::path p6 {"/home/goujz/Documents/CPPSTUDY/resource/score.txt"};
+	ofstream output{p6};
+	double lileiScore{90.5}, hanmeimeiScore{94.6};
+	output << "LiLei " << lileiScore << endl;
+	output << "Hanmeimei score : " << hanmeimeiScore << endl;
+	output.close();
+	cout << "size of " << p6 << "is : " << fs::file_size(p6) << endl;
+
+	// 读文件
+	fs::path fp7 {"/home/goujz/Documents/CPPSTUDY/resource/score2.txt"};
+	ifstream input{fp7};
+	if(input.fail())
+	{
+		cout << "can't open file " << fp7 << endl;
+		return 0;
+	}
+	string name{""};
+	double score{0.0};
+	char in_x;
+	for(; !input.eof(); )
+	{
+		input.get(in_x);
+		cout << in_x;
+	}
+	input.close();
+
+	// 填充字符，设置域宽
+	cout << setprecision(2) << 3.14159 << endl << flush;
+	// 当设置的浮点数总的有效数少了，这个double发生了四舍五入
+	cout << setfill('*') << setprecision(5) << setw(10) << 3.14159 << endl;
+
+
+
 
 
 	//system("pause");
