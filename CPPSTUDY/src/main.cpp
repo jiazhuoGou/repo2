@@ -16,10 +16,15 @@
 #include "../include/Helper.h"
 #include "../include/Rectangle.h"
 #include "../include/Shape.h"
+#include "../include/Generic.h"
+#include "../include/SelectionSort.h"
 
 using namespace std;
 
 namespace fs = filesystem;
+
+// 显示实例化：整数
+	template <int>  int Max(int, int);
 
 void print(array<int, 5> &arr);
 constexpr int factorial(int n)
@@ -321,6 +326,7 @@ int main(void)
 		cout << "exceoption : " << e.what() << endl;
 		std::cerr << e.what() << '\n';
 	}*/
+	/*
 	try
 	{
 		for(int i = 0; i < 100000000; i++)
@@ -332,16 +338,33 @@ int main(void)
 	catch(const std::bad_alloc& e)
 	{
 		std::cerr << e.what() << '\n';
-	}
+	}*/
 	
+	/*函数模板示例*/
+	cout << "\n-------------Generice test-----------" << endl;
+	cout << add(3.3, 22) << endl;
+	// 调用显示实例化函数
+	cout << "max(5, 15) : " << Max(5, 15) << endl;
+	// 浮点数实例化
+	cout << "max(23.6, 19.7) : " << Max(23.6, 19.7) << endl;
 
+	// 字符实例化
+	cout << "max('a', 'D') : " << Max('a', 'D') << endl;
 	
+	// 字符串字面量实例化
+	cout << R"(max("ABC", "ABD") : )" << Max("ABC", "ABD") << endl; 
+	cout << R"(max("123", "456") : )" << Max("123", "456") << endl; 
 	
-	
-	
-	
-	
-	
+	double x[]{3.0, 2.0, 6.1, 5.4, 9.0, 1.6, 7.8};
+	array x2 {3.0, 2.0, 6.1, 5.4, 9.0, 1.6, 7.8};
+	selectionSort(x2);
+	selectionSort(x, 7);
+	for(auto i : x)
+	{
+		cout << fixed << setprecision(2) << i << " ";
+	}
+	cout << "\n";
+
 
 
 
