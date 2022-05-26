@@ -8,6 +8,7 @@
 #include<filesystem>
 #include<fstream>
 #include<iomanip>
+#include<exception>
 
 #include "../include/Circle.h"
 #include "../include/Employee.h"
@@ -307,6 +308,7 @@ int main(void)
 	/* 异常处理 */
 	cout << "-------------Exception-----------" << endl;
 	vector V{'a', 'b', 'c', 'd', 'e'};
+	/*
 	try
 	{
 		for (int i = 0; i <=5; i++)
@@ -318,7 +320,21 @@ int main(void)
 	{
 		cout << "exceoption : " << e.what() << endl;
 		std::cerr << e.what() << '\n';
+	}*/
+	try
+	{
+		for(int i = 0; i < 100000000; i++)
+		{
+			auto* p = new long long int[80000000000];
+			cout << i << "array" << endl;
+		}
 	}
+	catch(const std::bad_alloc& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+
 	
 	
 	
